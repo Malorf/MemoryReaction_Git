@@ -6,7 +6,7 @@ using TMPro;
 
 public class Langage : MonoBehaviour
 {
-    public bool french = true;
+    public static bool french = true;
     public bool english = false;
     public TextMeshProUGUI languages;
     public TextMeshProUGUI versus;
@@ -16,7 +16,7 @@ public class Langage : MonoBehaviour
     public void TextLanguages ()
     {
         if (french == true)
-            {
+        {
             languages.text = "Langues";
             versus.text = "Contre";
             solo.text = "Seul";
