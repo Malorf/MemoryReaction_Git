@@ -9,8 +9,9 @@ public class GridThemeSolo : MonoBehaviour
     public TextMeshProUGUI theme2;
     public TextMeshProUGUI grid;
     public TextMeshProUGUI back;
-    public int scaleGrid = 4;
-    public int themeNumber = 1;
+    public TextMeshProUGUI play;
+    public static int scaleGrid = 4;
+    public static int themeNumber = 1;
     public void TextUpdate()
     {
         if (themeNumber == 1)
@@ -25,6 +26,7 @@ public class GridThemeSolo : MonoBehaviour
         }
         if (Langage.french == true)
         {
+            play.text = "Jouer";
             back.text = "Retour";
             theme1.text = "Animaux";
             theme2.text = "Aliments";
@@ -32,6 +34,7 @@ public class GridThemeSolo : MonoBehaviour
         }
         else
         {
+            play.text = "Play";
             back.text = "Back";
             theme1.text = "Animals";
             theme2.text = "Food";
