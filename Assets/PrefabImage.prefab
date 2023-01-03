@@ -1,5 +1,126 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5436144654618900018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6879001249856692070}
+  - component: {fileID: 8113796310905210310}
+  - component: {fileID: 7820576641637523933}
+  - component: {fileID: 636483206033114547}
+  m_Layer: 5
+  m_Name: ButtonImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6879001249856692070
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436144654618900018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7831329023349180958}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 300, y: 310}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8113796310905210310
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436144654618900018}
+  m_CullTransparentMesh: 1
+--- !u!114 &7820576641637523933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436144654618900018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.3018868, g: 0.21095447, b: 0.06123176, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &636483206033114547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436144654618900018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 7820576641637523933}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7831329023349180959
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,9 +132,10 @@ GameObject:
   - component: {fileID: 7831329023349180958}
   - component: {fileID: 7831329023349180952}
   - component: {fileID: 7831329023349180953}
+  - component: {fileID: 6409928949657182540}
   m_Layer: 5
   m_Name: PrefabImage
-  m_TagString: Untagged
+  m_TagString: Image
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +151,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6879001249856692070}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37,7 +160,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7831329023349180952
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 150f0e72d273eda4e982005481ef2fb1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,3 +199,67 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6409928949657182540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831329023349180959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d298db8c9fc6364597b018500218ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalsImages:
+  - {fileID: 2800000, guid: e38b57659ddbb2048b9e7dacfea194d3, type: 3}
+  - {fileID: 2800000, guid: df60aa6e475edbc4295a2db0f3c3da98, type: 3}
+  - {fileID: 2800000, guid: 33d4b3b2f8827be4f85c891c63437025, type: 3}
+  - {fileID: 2800000, guid: 8dfaf270245b03046a56d1eb7f202970, type: 3}
+  - {fileID: 2800000, guid: 7ca153582fd336a409c063ec5297c582, type: 3}
+  - {fileID: 2800000, guid: dce9625451ee208459e8dee29139be57, type: 3}
+  - {fileID: 2800000, guid: 24920ebb2b180644aabaa9ff0f0b4f2f, type: 3}
+  - {fileID: 2800000, guid: 6ed7e8e54440f0b46843d9d60ee3e7d2, type: 3}
+  - {fileID: 2800000, guid: 150f0e72d273eda4e982005481ef2fb1, type: 3}
+  - {fileID: 2800000, guid: fd4b83956ab9f624c8bce3a17113bf0a, type: 3}
+  - {fileID: 2800000, guid: cb00dd69a83f80c4a8ad267235d7506b, type: 3}
+  - {fileID: 2800000, guid: 0cb35f9ccbe79424c815db461be81af1, type: 3}
+  - {fileID: 2800000, guid: cce1010c1d398c14aaba40bf20c71117, type: 3}
+  - {fileID: 2800000, guid: 10915ffa45a2c18429d03a1415217e0e, type: 3}
+  - {fileID: 2800000, guid: ffd218fbca979044885305b728728b0b, type: 3}
+  - {fileID: 2800000, guid: b4c7388d5da5d4545b7f699825978a0c, type: 3}
+  - {fileID: 2800000, guid: 3cab24e4072672b4aa96065b00006853, type: 3}
+  - {fileID: 2800000, guid: 1e00570a942ec6c418f39d70bdba7e76, type: 3}
+  - {fileID: 2800000, guid: 577cd0be88f335f468321b47c2c7fac7, type: 3}
+  - {fileID: 2800000, guid: bb543b87235ef524b8d6d99be539eba0, type: 3}
+  - {fileID: 2800000, guid: d563de31b3d5679488614923b9607bcf, type: 3}
+  - {fileID: 2800000, guid: 5056dc451438cd54b8a6d41f42b94908, type: 3}
+  - {fileID: 2800000, guid: b89d03f9ffa2df84393ca1c6ee098f00, type: 3}
+  - {fileID: 2800000, guid: 610bad6523c2a6c429074c5b34d0b9a5, type: 3}
+  - {fileID: 2800000, guid: e93a9a9a436cf89419451d90703578fc, type: 3}
+  animalsNames:
+  - Bat
+  - Bizon
+  - Cat
+  - Cerf
+  - Chameau
+  - Cochon
+  - Cow
+  - Crabe
+  - Dauphin
+  - Dog
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
