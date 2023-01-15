@@ -4,18 +4,21 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class SoloMode : MonoBehaviour
 {
     public GameObject prefabImage;
     public Canvas myCanvas;
-    private GameObject[] gameObjectImages;
+    public GameObject[] gameObjectImages;
     public Sprite[] animalsImages;
-    public String[] animalsNames;
+    public string[] animalsNames;
     private int numberOfImages;
     public GridLayoutGroup grid;
     IDictionary<Sprite, String> myAnimals = new Dictionary<Sprite, String>();
-    // Start is called before the first frame update
+    IList<string> myListName = new List<string>();
+    public TextMeshProUGUI nameOfImageToFind;
+    private int randomName;
     public void CreateGrid()
     {
         numberOfImages = GridThemeSolo.scaleGrid * GridThemeSolo.scaleGrid;
@@ -25,24 +28,25 @@ public class SoloMode : MonoBehaviour
                 switch(GridThemeSolo.themeNumber) //ImagesDependOnThemeChoosed
                 {
                     case 1:  //ThemeIsAnimal
-                    prefabImage.GetComponent<Image>().sprite = animalsImages[i];
-                    break;   
+                    prefabImage.GetComponent<Image>().sprite = animalsImages[i]; //ImagesAreAnimals
+                        break;   
                 }
                 GameObject image = Instantiate(prefabImage, transform.parent);
                 image.transform.SetParent(myCanvas.transform);
                 image.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+                image.transform.GetChild(0).gameObject.GetComponent<Button>().onClick.AddListener(OnClickImage);
             }
         }
-        gameObjectImages = GameObject.FindGameObjectsWithTag("Image");
+        gameObjectImages = GameObject.FindGameObjectsWithTag("Image"); // stocking every instantiate items
         switch (GridThemeSolo.scaleGrid) //ImagesSizeDependOnScalingChoosed
         {
-            case 3:  //SizeIs 3x3
+            case 3:  //GridSizeIs 3x3
                 grid.cellSize = new Vector2(300, 300);
                 break;
-            case 4: //SizeIs 4x4
+            case 4: //GridSizeIs 4x4
                 grid.cellSize = new Vector2(240, 240);
                 break;
-            case 5: //SizeIs 4x4
+            case 5: //GridSizeIs 5x5
                 grid.cellSize = new Vector2(180, 180);
                 break;
         }
@@ -50,35 +54,38 @@ public class SoloMode : MonoBehaviour
 
     public void RotateGrid()
     {
-        foreach (GameObject images in gameObjectImages)
+        foreach (GameObject goImages in gameObjectImages)
         {
-            images.transform.Rotate(0f, 90f, 0f);
-            images.GetComponent<Image>().enabled = false;
-            images.transform.Rotate(0f, 90f, 0f);
-            images.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
-            switch (GridThemeSolo.scaleGrid) //ImagesSizeDependOnScalingChoosed
+            if (goImages != null) //PreventMinorIssueOn"gameObjectImages"
             {
-                case 3:  //SizeIs 3x3
-                    images.transform.GetChild(0).localScale = new Vector3(1.1f, 1.1f, 1.1f);
-                    break;
-                case 4: //SizeIs 4x4
-                    images.transform.GetChild(0).localScale = new Vector3(0.85f, 0.85f, 0.85f);
-                    break;
-                case 5: //SizeIs 4x4
-                    images.transform.GetChild(0).localScale = new Vector3(0.70f, 0.70f, 0.70f);
-                    break;
+                goImages.transform.Rotate(0f, 90f, 0f); //ImageFlipAt90°
+                goImages.GetComponent<Image>().enabled = false; //AndIsDesactivated
+                goImages.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true; //IsActivated
+                goImages.transform.GetChild(0).Rotate(0f, -90f, 0f); //BrickFlipAt90°
+                switch (GridThemeSolo.scaleGrid) //ImagesSizeDependOnScalingChoosed
+                {
+                    case 3:  //SizeIs 3x3
+                        goImages.transform.GetChild(0).localScale = new Vector3(1.1f, 1.1f, 1.1f);
+                        break;
+                    case 4: //SizeIs 4x4
+                        goImages.transform.GetChild(0).localScale = new Vector3(0.85f, 0.85f, 0.85f);
+                        break;
+                    case 5: //SizeIs 4x4
+                        goImages.transform.GetChild(0).localScale = new Vector3(0.70f, 0.70f, 0.70f);
+                        break;
+                }
             }
         }
     }
     public void DestroyGrid()
     {
-        foreach (GameObject images in gameObjectImages)
+        foreach (GameObject goImages in gameObjectImages)
         {
-            Destroy(images);
+            Destroy(goImages);
         }
     }
 
-    public void DictionnaryAnimals()
+    public void DictionnaryAnimals() //ImageAssociatedWithName
     {
         for (int i = 0; i < numberOfImages; i++)
         {
@@ -86,18 +93,18 @@ public class SoloMode : MonoBehaviour
                 myAnimals.Add(animalsImages[i], animalsNames[i]);
             }
         }
-        Debug.Log(myAnimals[animalsImages[4]]);
     }
     public void DestroyDictionnary()
     {
         myAnimals.Clear();
     }
 
-    public void ShuffleImages()
+    public void ShuffleImages() //StartTheGame
     {
         DestroyGrid();
         DestroyDictionnary();
-        for (int i = 0; i < numberOfImages; i++)
+        myListName.Clear();
+        for (int i = 0; i < numberOfImages; i++) //Shuffle
         {
             string temp1 = animalsNames[i];
             Sprite temp2 = animalsImages[i];
@@ -109,5 +116,43 @@ public class SoloMode : MonoBehaviour
         }
         CreateGrid();
         DictionnaryAnimals();
+        listNames();
+        NameApparition();  //temporary (it will be replaced by an other function which leave some time to memorize)
+    }
+    public void listNames()
+    {
+        for (int i = 0; i < numberOfImages; i++)
+        {
+            myListName.Add(animalsNames[i]);
+        }
+    }
+    public void NameApparition() //ARandomNameAppeared
+    {
+        randomName = Random.Range(0, myListName.Count);
+        Debug.Log(randomName);
+        nameOfImageToFind.text = myListName[randomName];
+    }
+    void OnClickImage()
+    {
+        ButtonPrefab.prefab.transform.GetChild(0).Rotate(0f, 90f, 0f); //Return and discover the brick
+        ButtonPrefab.prefab.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
+        ButtonPrefab.prefab.GetComponent<Image>().enabled = true;
+        ButtonPrefab.prefab.transform.Rotate(0f, -90f, 0f);
+        Debug.Log("imageName : " + myAnimals[ButtonPrefab.mySpritePrefabImage] + "  name :" + animalsNames[randomName]);
+        if (myAnimals[ButtonPrefab.mySpritePrefabImage] == myListName[randomName])
+        {
+            Debug.Log("good");
+            myAnimals.Remove(ButtonPrefab.mySpritePrefabImage); //NEED to remove or clear the animalsName 
+            myListName.Remove(myListName[randomName]);
+            NameApparition();
+        }
+        else
+        {
+            ButtonPrefab.prefab.transform.Rotate(0f, 90f, 0f); //Hide it again
+            ButtonPrefab.prefab.GetComponent<Image>().enabled = false;
+            ButtonPrefab.prefab.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
+            ButtonPrefab.prefab.transform.GetChild(0).Rotate(0f, -90f, 0f);
+            Debug.Log("bad");
+        }
     }
 }

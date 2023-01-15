@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 6879001249856692070}
   - component: {fileID: 8113796310905210310}
   - component: {fileID: 7820576641637523933}
-  - component: {fileID: 636483206033114547}
+  - component: {fileID: 212181644359399634}
+  - component: {fileID: 903966456164037872}
+  - component: {fileID: 3787604881405849060}
+  - component: {fileID: 7830055708575722258}
   m_Layer: 5
   m_Name: ButtonImage
   m_TagString: Untagged
@@ -77,7 +80,58 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &636483206033114547
+--- !u!223 &212181644359399634
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436144654618900018}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &903966456164037872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436144654618900018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &3787604881405849060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436144654618900018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d298db8c9fc6364597b018500218ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refPrefab: {fileID: 7831329023349180959}
+--- !u!114 &7830055708575722258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +174,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7820576641637523933}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3787604881405849060}
+        m_TargetAssemblyTypeName: ButtonPrefab, Assembly-CSharp
+        m_MethodName: MyChoise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7831329023349180959
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +198,8 @@ GameObject:
   - component: {fileID: 7831329023349180958}
   - component: {fileID: 7831329023349180952}
   - component: {fileID: 7831329023349180953}
-  - component: {fileID: 6409928949657182540}
+  - component: {fileID: 9192379545518521189}
+  - component: {fileID: 3030343952439050238}
   m_Layer: 5
   m_Name: PrefabImage
   m_TagString: Image
@@ -189,7 +256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 150f0e72d273eda4e982005481ef2fb1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4c7388d5da5d4545b7f699825978a0c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -199,7 +266,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6409928949657182540
+--- !u!223 &9192379545518521189
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831329023349180959}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &3030343952439050238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,58 +296,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7831329023349180959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d298db8c9fc6364597b018500218ae2, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalsImages:
-  - {fileID: 2800000, guid: e38b57659ddbb2048b9e7dacfea194d3, type: 3}
-  - {fileID: 2800000, guid: df60aa6e475edbc4295a2db0f3c3da98, type: 3}
-  - {fileID: 2800000, guid: 33d4b3b2f8827be4f85c891c63437025, type: 3}
-  - {fileID: 2800000, guid: 8dfaf270245b03046a56d1eb7f202970, type: 3}
-  - {fileID: 2800000, guid: 7ca153582fd336a409c063ec5297c582, type: 3}
-  - {fileID: 2800000, guid: dce9625451ee208459e8dee29139be57, type: 3}
-  - {fileID: 2800000, guid: 24920ebb2b180644aabaa9ff0f0b4f2f, type: 3}
-  - {fileID: 2800000, guid: 6ed7e8e54440f0b46843d9d60ee3e7d2, type: 3}
-  - {fileID: 2800000, guid: 150f0e72d273eda4e982005481ef2fb1, type: 3}
-  - {fileID: 2800000, guid: fd4b83956ab9f624c8bce3a17113bf0a, type: 3}
-  - {fileID: 2800000, guid: cb00dd69a83f80c4a8ad267235d7506b, type: 3}
-  - {fileID: 2800000, guid: 0cb35f9ccbe79424c815db461be81af1, type: 3}
-  - {fileID: 2800000, guid: cce1010c1d398c14aaba40bf20c71117, type: 3}
-  - {fileID: 2800000, guid: 10915ffa45a2c18429d03a1415217e0e, type: 3}
-  - {fileID: 2800000, guid: ffd218fbca979044885305b728728b0b, type: 3}
-  - {fileID: 2800000, guid: b4c7388d5da5d4545b7f699825978a0c, type: 3}
-  - {fileID: 2800000, guid: 3cab24e4072672b4aa96065b00006853, type: 3}
-  - {fileID: 2800000, guid: 1e00570a942ec6c418f39d70bdba7e76, type: 3}
-  - {fileID: 2800000, guid: 577cd0be88f335f468321b47c2c7fac7, type: 3}
-  - {fileID: 2800000, guid: bb543b87235ef524b8d6d99be539eba0, type: 3}
-  - {fileID: 2800000, guid: d563de31b3d5679488614923b9607bcf, type: 3}
-  - {fileID: 2800000, guid: 5056dc451438cd54b8a6d41f42b94908, type: 3}
-  - {fileID: 2800000, guid: b89d03f9ffa2df84393ca1c6ee098f00, type: 3}
-  - {fileID: 2800000, guid: 610bad6523c2a6c429074c5b34d0b9a5, type: 3}
-  - {fileID: 2800000, guid: e93a9a9a436cf89419451d90703578fc, type: 3}
-  animalsNames:
-  - Bat
-  - Bizon
-  - Cat
-  - Cerf
-  - Chameau
-  - Cochon
-  - Cow
-  - Crabe
-  - Dauphin
-  - Dog
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
