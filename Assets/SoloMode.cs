@@ -33,7 +33,6 @@ public class SoloMode : MonoBehaviour
                 }
                 GameObject image = Instantiate(prefabImage, transform.parent);
                 image.transform.SetParent(myCanvas.transform);
-                image.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
                 image.transform.GetChild(0).gameObject.GetComponent<Button>().onClick.AddListener(OnClickImage);
             }
         }
@@ -58,10 +57,8 @@ public class SoloMode : MonoBehaviour
         {
             if (goImages != null) //PreventMinorIssueOn"gameObjectImages"
             {
-                goImages.transform.Rotate(0f, 90f, 0f); //ImageFlipAt90°
-                goImages.GetComponent<Image>().enabled = false; //AndIsDesactivated
-                goImages.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true; //IsActivated
-                goImages.transform.GetChild(0).Rotate(0f, -90f, 0f); //BrickFlipAt90°
+                Animator images = goImages.GetComponent<Animator>(); 
+                images.SetBool("Rotate90°", true); //ImagesFlipAt90° All bricks button are up
                 switch (GridThemeSolo.scaleGrid) //ImagesSizeDependOnScalingChoosed
                 {
                     case 3:  //SizeIs 3x3
@@ -134,10 +131,7 @@ public class SoloMode : MonoBehaviour
     }
     void OnClickImage()
     {
-        ButtonPrefab.prefab.transform.GetChild(0).Rotate(0f, 90f, 0f); //Return and discover the brick
-        ButtonPrefab.prefab.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = false;
-        ButtonPrefab.prefab.GetComponent<Image>().enabled = true;
-        ButtonPrefab.prefab.transform.Rotate(0f, -90f, 0f);
+        ButtonPrefab.prefab.GetComponent<Animator>().SetBool("Rotate90°", false);
         Debug.Log("imageName : " + myAnimals[ButtonPrefab.mySpritePrefabImage] + "  name :" + animalsNames[randomName]);
         if (myAnimals[ButtonPrefab.mySpritePrefabImage] == myListName[randomName])
         {
@@ -148,11 +142,13 @@ public class SoloMode : MonoBehaviour
         }
         else
         {
-            ButtonPrefab.prefab.transform.Rotate(0f, 90f, 0f); //Hide it again
-            ButtonPrefab.prefab.GetComponent<Image>().enabled = false;
-            ButtonPrefab.prefab.transform.GetChild(0).gameObject.GetComponent<Image>().enabled = true;
-            ButtonPrefab.prefab.transform.GetChild(0).Rotate(0f, -90f, 0f);
+            StartCoroutine(DelayBeforeReturninBrick());
             Debug.Log("bad");
         }
+    }
+    IEnumerator DelayBeforeReturninBrick()
+    {
+        yield return new WaitForSeconds(1f);
+        ButtonPrefab.prefab.GetComponent<Animator>().SetBool("Rotate90°", true);
     }
 }
