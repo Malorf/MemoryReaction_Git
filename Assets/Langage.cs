@@ -6,24 +6,17 @@ using TMPro;
 
 public class Langage : MonoBehaviour
 {
-    public static bool french = true;
-    public bool english = false;
+    public static int indexLanguage = 2; //StartWithFrench
+    public static AudioSource audios;
     public TextMeshProUGUI languages;
     public TextMeshProUGUI versus;
     public TextMeshProUGUI solo;
     public TextMeshProUGUI txtFrench;
     public TextMeshProUGUI txtEnglish;
+    public AudioClip musiqueMenu;
     public void TextLanguages ()
     {
-        if (french == true)
-        {
-            languages.text = "Langues";
-            versus.text = "Contre";
-            solo.text = "Seul";
-            txtFrench.text = "Français";
-            txtEnglish.text = "Anglais";
-        }
-        else
+        if (indexLanguage == 1) //1 = english
         {
             languages.text = "Languages";
             versus.text = "Versus";
@@ -31,20 +24,35 @@ public class Langage : MonoBehaviour
             txtFrench.text = "French";
             txtEnglish.text = "English";
         }
+        if (indexLanguage == 2) //2 = french
+        {
+            languages.text = "Langues";
+            versus.text = "Contre";
+            solo.text = "Seul";
+            txtFrench.text = "Français";
+            txtEnglish.text = "Anglais";
+        }
     }
     public void FrenchLanguage ()
     {
-        french = true;
+        indexLanguage = 2;
         TextLanguages();
     }
     public void EnglishLanguage()
     {
-        french = false;
+        indexLanguage = 1;
         TextLanguages();
+    }
+    public void Musique()
+    {
+        audios.clip = musiqueMenu;
+        audios.Play();
     }
     // Update is called once per frame
     void Start()
     {
+        audios = GetComponent<AudioSource>();
+        Musique();
         TextLanguages();
     }
 }

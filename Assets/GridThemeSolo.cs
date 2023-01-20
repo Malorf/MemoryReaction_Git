@@ -24,20 +24,20 @@ public class GridThemeSolo : MonoBehaviour
             theme2.enabled = true;
             theme1.enabled = false;
         }
-        if (Langage.french == true)
-        {
-            play.text = "Jouer";
-            back.text = "Retour";
-            theme1.text = "Animaux";
-            theme2.text = "Aliments";
-            grid.text = scaleGrid + "x" + scaleGrid;
-        }
-        else
+        if (Langage.indexLanguage == 1) //english
         {
             play.text = "Play";
             back.text = "Back";
             theme1.text = "Animals";
             theme2.text = "Food";
+            grid.text = scaleGrid + "x" + scaleGrid;
+        }
+        if (Langage.indexLanguage == 2) //french
+        {
+            play.text = "Jouer";
+            back.text = "Retour";
+            theme1.text = "Animaux";
+            theme2.text = "Aliments";
             grid.text = scaleGrid + "x" + scaleGrid;
         }
     }

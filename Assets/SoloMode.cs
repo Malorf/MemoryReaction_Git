@@ -19,6 +19,13 @@ public class SoloMode : MonoBehaviour
     IList<string> myListName = new List<string>();
     public TextMeshProUGUI nameOfImageToFind;
     private int randomName;
+
+    public AudioSource audioSolo;
+    public AudioClip soundBad;
+    public AudioClip soundGood;
+    public AudioClip soundEnd;
+
+    private string translate;
     public void CreateGrid()
     {
         numberOfImages = GridThemeSolo.scaleGrid * GridThemeSolo.scaleGrid;
@@ -96,7 +103,7 @@ public class SoloMode : MonoBehaviour
         myAnimals.Clear();
     }
 
-    public void ShuffleImages() //StartTheGame
+    public void ShuffleImages() //StartTheGameOrPlayAgain
     {
         DestroyGrid();
         DestroyDictionnary();
@@ -113,42 +120,229 @@ public class SoloMode : MonoBehaviour
         }
         CreateGrid();
         DictionnaryAnimals();
-        listNames();
-        NameApparition();  //temporary (it will be replaced by an other function which leave some time to memorize)
+        ListNames();
+        currentTime = startingTime;
+        audioSolo = GetComponent<AudioSource>();
+        Memorize();
     }
-    public void listNames()
+    public void ListNames()
     {
         for (int i = 0; i < numberOfImages; i++)
         {
             myListName.Add(animalsNames[i]);
         }
     }
+    [SerializeField] TextMeshProUGUI timerText;
+
+    public void TimerTick()
+    {
+        timerText.enabled = true;
+        if (myListName.Count > 0)
+        {
+            timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(currentTime / 60), currentTime % 60);  //Time in min + sec
+            StartCoroutine(DelayBeforeTickTimer());
+        }
+        if (myListName.Count <= 0)
+        {
+            timerText.text = string.Format ("{0:0}:{1:00}", Mathf.Floor(currentTime/60), currentTime%60);
+        }
+        IEnumerator DelayBeforeTickTimer()
+        {
+            yield return new WaitForSeconds(1f);
+            currentTime += 1;
+            TimerTick();
+        }
+    }
     public void NameApparition() //ARandomNameAppeared
     {
-        randomName = Random.Range(0, myListName.Count);
-        Debug.Log(randomName);
-        nameOfImageToFind.text = myListName[randomName];
-    }
-    void OnClickImage()
-    {
-        ButtonPrefab.prefab.GetComponent<Animator>().SetBool("Rotate90°", false);
-        Debug.Log("imageName : " + myAnimals[ButtonPrefab.mySpritePrefabImage] + "  name :" + animalsNames[randomName]);
-        if (myAnimals[ButtonPrefab.mySpritePrefabImage] == myListName[randomName])
+        if (Langage.indexLanguage == 1) //GameInEnglish
         {
-            Debug.Log("good");
-            myAnimals.Remove(ButtonPrefab.mySpritePrefabImage); //NEED to remove or clear the animalsName 
-            myListName.Remove(myListName[randomName]);
+            if (myListName.Count > 0) //Get a random name on the list
+            {
+                randomName = Random.Range(0, myListName.Count);
+                //myListSoundsEnglish?
+                nameOfImageToFind.text = myListName[randomName];
+            }
+            if (myListName.Count <= 0) //all names have been played
+            {
+                audioSolo.clip = soundEnd;
+                audioSolo.Play();
+                nameOfImageToFind.text = "Congrats !"; //Temporary (will be replaced by a panel stats of the game)
+            }
+        }
+        if (Langage.indexLanguage == 2) //GameInFrench
+        {
+            if (myListName.Count > 0)
+            {
+                randomName = Random.Range(0, myListName.Count);
+                translate = myListName[randomName];
+                //myListSoundsFrench?
+                inFrench();
+                nameOfImageToFind.text = translate;
+            }
+            if (myListName.Count <= 0)
+            {
+                audioSolo.clip = soundEnd;
+                audioSolo.Play();
+                nameOfImageToFind.text = "Félicitations !";
+            }
+        }
+    }
+    public void OnClickImage() //Main function for the player
+    {
+        Animator localAnim = ButtonPrefab.prefab.GetComponent<Animator>(); //An animator local variable for each Button (prevent to get an animator shared by every buttons)
+        localAnim.SetBool("Rotate90°", false); //Reveal the image
+        Debug.Log("imageName : " + myAnimals[ButtonPrefab.mySpritePrefabImage] + "  name :" + myListName[randomName]);
+        if (myAnimals[ButtonPrefab.mySpritePrefabImage] == myListName[randomName]) //if there is a match
+        {
+            audioSolo.clip = soundGood;
+            audioSolo.Play();
+            myListName.Remove(myListName[randomName]); //removing the found name of the list 
+            NameApparition(); // new name
+        }
+        else // if not
+        {
+            StartCoroutine(DelayBeforeReturninBrick()); //1sec before hiding again
+            audioSolo.clip = soundBad;
+            audioSolo.Play();
+            currentTime += 5;
+        }
+        IEnumerator DelayBeforeReturninBrick()
+        {
+            yield return new WaitForSeconds(1f);
+            localAnim.SetBool("Rotate90°", true);
+        }
+    }
+
+    float currentTime = 0f;
+    float startingTime = 10f;
+    [SerializeField] TextMeshProUGUI countDownText;
+
+    public void Memorize()
+    {
+        countDownText.enabled = true;
+        if (currentTime > 0)
+        {
+            countDownText.text = currentTime.ToString("0");
+            StartCoroutine(DelayBeforeTickCd());
+        }
+        if (currentTime <= 0)
+        {
+            currentTime = 0;
+            RotateGrid();
             NameApparition();
+            countDownText.enabled = false;
+            TimerTick();
         }
-        else
+        IEnumerator DelayBeforeTickCd()
         {
-            StartCoroutine(DelayBeforeReturninBrick());
-            Debug.Log("bad");
+            yield return new WaitForSeconds(1f);
+            currentTime -= 1;
+            Memorize();
         }
     }
-    IEnumerator DelayBeforeReturninBrick()
+
+    public void inFrench()
     {
-        yield return new WaitForSeconds(1f);
-        ButtonPrefab.prefab.GetComponent<Animator>().SetBool("Rotate90°", true);
+        if (translate == "Bear")
+        {
+            translate = "Ours";
+        }
+        if (translate == "Camel")
+        {
+            translate = "Chameau";
+        }
+        if (translate == "Cat")
+        {
+            translate = "Chat";
+        }
+        if (translate == "Cow")
+        {
+            translate = "Vache";
+        }
+        if (translate == "Dog")
+        {
+            translate = "Chien";
+        }
+        if (translate == "Dolphin")
+        {
+            translate = "Dauphin";
+        }
+        if (translate == "Duck")
+        {
+            translate = "Canard";
+        }
+        if (translate == "Eagle")
+        {
+            translate = "Aigle";
+        }
+        if (translate == "Elephant")
+        {
+            translate = "Elephant";
+        }
+        if (translate == "Fish")
+        {
+            translate = "Poisson";
+        }
+        if (translate == "Flamingo")
+        {
+            translate = "Flamant Rose";
+        }
+        if (translate == "Fox")
+        {
+            translate = "Renard";
+        }
+        if (translate == "Giraffe")
+        {
+            translate = "Girafe";
+        }
+        if (translate == "Horse")
+        {
+            translate = "Cheval";
+        }
+        if (translate == "Kangaroo")
+        {
+            translate = "Kangourou";
+        }
+        if (translate == "Lion")
+        {
+            translate = "Lion";
+        }
+        if (translate == "Pig")
+        {
+            translate= "Cochon";
+        }
+        if (translate == "Rabbit")
+        {
+            translate = "Lapin";
+        }
+        if (translate == "Sheep")
+        {
+            translate = "Mouton";
+        }
+        if (translate == "Squirrel")
+        {
+            translate = "Ecureuil";
+        }
+        if (translate == "Tiger")
+        {
+            translate = "Tigre";
+        }
+        if (translate == "Turtle")
+        {
+            translate = "Tortue";
+        }
+        if (translate == "Wildebeest")
+        {
+            translate = "Gnou";
+        }
+        if (translate == "Wolf")
+        {
+            translate = "Loup";
+        }
+        if (translate == "Zebra")
+        {
+            translate = "Zebre";
+        }
     }
 }
