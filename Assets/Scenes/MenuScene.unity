@@ -136,7 +136,6 @@ GameObject:
   - component: {fileID: 16980049}
   - component: {fileID: 16980048}
   - component: {fileID: 16980052}
-  - component: {fileID: 16980053}
   m_Layer: 5
   m_Name: CanvasSolo
   m_TagString: Untagged
@@ -296,110 +295,67 @@ MonoBehaviour:
   - Wildebeest
   - Wolf
   - Fish
+  animalsInEnglish:
+  - {fileID: 8300000, guid: 40afca1bbafe18f4cac6342675580303, type: 3}
+  - {fileID: 8300000, guid: c51431589c5a57b40959bdab9190d616, type: 3}
+  - {fileID: 8300000, guid: 3613cb4927ba8104380268092886bad8, type: 3}
+  - {fileID: 8300000, guid: 0e0397ba2225cab4496aa5882ac86ed9, type: 3}
+  - {fileID: 8300000, guid: 223f3c7cd52633c459b7be51c4d1a02d, type: 3}
+  - {fileID: 8300000, guid: 7904cc938e7dd6a4f872850890627565, type: 3}
+  - {fileID: 8300000, guid: 2409048d1360bde44ac8c8a858d83dae, type: 3}
+  - {fileID: 8300000, guid: 824d82725d2c8414785b4106d7f9db43, type: 3}
+  - {fileID: 8300000, guid: 2ebc90931c24ff1439ae7b0286a1f8b0, type: 3}
+  - {fileID: 8300000, guid: aef4388c194a3e34f8ef146c940dfaea, type: 3}
+  - {fileID: 8300000, guid: 6711e09cacf854b41ac88c4b1d6aa58d, type: 3}
+  - {fileID: 8300000, guid: 2a502825b2c48a4438d3da52420d8812, type: 3}
+  - {fileID: 8300000, guid: 9470af80e410b4b4ca1f09f69622d590, type: 3}
+  - {fileID: 8300000, guid: 231e7103ddf172e4681acebc62785c56, type: 3}
+  - {fileID: 8300000, guid: ea89890efda463e479625cd3707d5e0b, type: 3}
+  - {fileID: 8300000, guid: 37d3a33d71d48af42a1bee0409e626f8, type: 3}
+  - {fileID: 8300000, guid: 7b387abf8b3e5f5488982dbaaad42675, type: 3}
+  - {fileID: 8300000, guid: 334f5b491dab81f4bb470586318cc447, type: 3}
+  - {fileID: 8300000, guid: 4cf5301d2ba84ec42b79539d8d752ed7, type: 3}
+  - {fileID: 8300000, guid: a9a19c3c447f23441bef868c89d602b5, type: 3}
+  - {fileID: 8300000, guid: 0b4454482e319e94ebfa1b1dc0060931, type: 3}
+  - {fileID: 8300000, guid: f750f71e93ce0864b97357ebb19cf434, type: 3}
+  - {fileID: 8300000, guid: cc3ae3b51d8df5443ad0c0ad6bb8555d, type: 3}
+  - {fileID: 8300000, guid: 40e7133305dd0654c8e9ef7b69ff852e, type: 3}
+  - {fileID: 8300000, guid: eff4d5127a2497e4dad06fe7e44db405, type: 3}
+  animalsInFrench:
+  - {fileID: 8300000, guid: 9d69e10d82676e94b875e2e716774acf, type: 3}
+  - {fileID: 8300000, guid: cec74813faecdbc4e824a3773adea8f7, type: 3}
+  - {fileID: 8300000, guid: 33f265442ae845049bf1e2fed0452260, type: 3}
+  - {fileID: 8300000, guid: 96fe8e7ee0c44b34d80d8e3820c29cdf, type: 3}
+  - {fileID: 8300000, guid: e66d84f4df13c9f4ab735abe78962bdd, type: 3}
+  - {fileID: 8300000, guid: 319b0ee8b399ec947a96a40f8bd3272f, type: 3}
+  - {fileID: 8300000, guid: 8387ac9e1e1788f41bd49e54547c4496, type: 3}
+  - {fileID: 8300000, guid: a131c89250de71e4b90059b8b12b57c3, type: 3}
+  - {fileID: 8300000, guid: 3a3d00c7441f25b43af0c26d28f967b5, type: 3}
+  - {fileID: 8300000, guid: 1b84b0b683e04b242bc04c64dcc71c38, type: 3}
+  - {fileID: 8300000, guid: fe00c5334c7b98f48bea7b2163d1c286, type: 3}
+  - {fileID: 8300000, guid: 6b05ebbbde88cdf4fbb814895d38f5bb, type: 3}
+  - {fileID: 8300000, guid: 2c0b1fad6b5a8ce41bdedfd81b8a61c6, type: 3}
+  - {fileID: 8300000, guid: 0b09ed1dd80d07144a70886cd9362823, type: 3}
+  - {fileID: 8300000, guid: 3b2b18f29d2b2b243b99d1ad150f63c8, type: 3}
+  - {fileID: 8300000, guid: 5e7c81bde8ab04e4d913f118d63f3a34, type: 3}
+  - {fileID: 8300000, guid: e0e5e5af110469740b1d8762cc1d4d9f, type: 3}
+  - {fileID: 8300000, guid: 8777438404078f94190090dc2b4f8df1, type: 3}
+  - {fileID: 8300000, guid: 7b1becb039ef2a646b7c53eebc80095a, type: 3}
+  - {fileID: 8300000, guid: 525116ca390b3354cb32a2530ae89bf3, type: 3}
+  - {fileID: 8300000, guid: e4ed8b0d5d8d71a4b81002b97dcfa91e, type: 3}
+  - {fileID: 8300000, guid: 5ca925ac0080e9545bde61d84b00a5db, type: 3}
+  - {fileID: 8300000, guid: 5b4b19ff00918fd4ebec8760b921fd74, type: 3}
+  - {fileID: 8300000, guid: 51cb7849c854672468b7a37bcd396b1a, type: 3}
+  - {fileID: 8300000, guid: 09fd327ccdc1c104fb69b2799e8e8557, type: 3}
   grid: {fileID: 196132618}
   nameOfImageToFind: {fileID: 510213431}
-  audioSolo: {fileID: 16980053}
+  audioSolo: {fileID: 0}
+  voiceSolo: {fileID: 0}
   soundBad: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
   soundGood: {fileID: 8300000, guid: cf6c0e7fbef9449c98a0cdb5ea0c4d9f, type: 3}
   soundEnd: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
   timerText: {fileID: 492632771}
   countDownText: {fileID: 1011522354}
---- !u!82 &16980053
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 16980047}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &48610099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,18 +1348,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 16980047}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1027682580}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -1430,19 +1374,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 16980052}
         m_TargetAssemblyTypeName: SoloMode, Assembly-CSharp
-        m_MethodName: DestroyGrid
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 16980052}
-        m_TargetAssemblyTypeName: SoloMode, Assembly-CSharp
-        m_MethodName: DestroyDictionnary
+        m_MethodName: Reset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

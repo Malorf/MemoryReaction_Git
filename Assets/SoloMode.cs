@@ -13,14 +13,18 @@ public class SoloMode : MonoBehaviour
     public GameObject[] gameObjectImages;
     public Sprite[] animalsImages;
     public string[] animalsNames;
+    public AudioClip[] animalsInEnglish;
+    public AudioClip[] animalsInFrench;
     private int numberOfImages;
     public GridLayoutGroup grid;
     IDictionary<Sprite, String> myAnimals = new Dictionary<Sprite, String>();
     IList<string> myListName = new List<string>();
+    IList<AudioClip> myListAudio = new List<AudioClip>();
     public TextMeshProUGUI nameOfImageToFind;
     private int randomName;
 
     public AudioSource audioSolo;
+    public AudioSource voiceSolo;
     public AudioClip soundBad;
     public AudioClip soundGood;
     public AudioClip soundEnd;
@@ -46,14 +50,21 @@ public class SoloMode : MonoBehaviour
         gameObjectImages = GameObject.FindGameObjectsWithTag("Image"); // stocking every instantiate items
         switch (GridThemeSolo.scaleGrid) //ImagesSizeDependOnScalingChoosed
         {
+            case 2:  //GridSizeIs 2x2
+                grid.cellSize = new Vector2(400, 400);
+                startingTime = 10f;
+                break;
             case 3:  //GridSizeIs 3x3
                 grid.cellSize = new Vector2(300, 300);
+                startingTime = 10f;
                 break;
             case 4: //GridSizeIs 4x4
                 grid.cellSize = new Vector2(240, 240);
+                startingTime = 15f;
                 break;
             case 5: //GridSizeIs 5x5
                 grid.cellSize = new Vector2(180, 180);
+                startingTime = 20f;
                 break;
         }
     }
@@ -68,6 +79,9 @@ public class SoloMode : MonoBehaviour
                 images.SetBool("Rotate90°", true); //ImagesFlipAt90° All bricks button are up
                 switch (GridThemeSolo.scaleGrid) //ImagesSizeDependOnScalingChoosed
                 {
+                    case 2:  //SizeIs 3x3
+                        goImages.transform.GetChild(0).localScale = new Vector3(1.3f, 1.3f, 1.3f);
+                        break;
                     case 3:  //SizeIs 3x3
                         goImages.transform.GetChild(0).localScale = new Vector3(1.1f, 1.1f, 1.1f);
                         break;
@@ -98,6 +112,15 @@ public class SoloMode : MonoBehaviour
             }
         }
     }
+    public void Reset()
+    {
+        DestroyDictionnary();
+        DestroyGrid();
+        myListName.Clear();
+        myListAudio.Clear();
+        nameOfImageToFind.text = "";
+        StopAllCoroutines();
+    }
     public void DestroyDictionnary()
     {
         myAnimals.Clear();
@@ -105,24 +128,29 @@ public class SoloMode : MonoBehaviour
 
     public void ShuffleImages() //StartTheGameOrPlayAgain
     {
-        DestroyGrid();
-        DestroyDictionnary();
-        myListName.Clear();
+        Reset();
         for (int i = 0; i < numberOfImages; i++) //Shuffle
         {
             string temp1 = animalsNames[i];
             Sprite temp2 = animalsImages[i];
+            AudioClip temp3 = animalsInEnglish[i];
+            AudioClip temp4 = animalsInFrench[i];
             int randomIndex = Random.Range(i, numberOfImages);
             animalsNames[i] = animalsNames[randomIndex];
             animalsImages[i] = animalsImages[randomIndex];
+            animalsInEnglish[i] = animalsInEnglish[randomIndex];
+            animalsInFrench[i] = animalsInFrench[randomIndex];
             animalsNames[randomIndex] = temp1;
             animalsImages[randomIndex] = temp2;
+            animalsInEnglish[randomIndex] = temp3;
+            animalsInFrench[randomIndex] = temp4;
         }
         CreateGrid();
         DictionnaryAnimals();
         ListNames();
         currentTime = startingTime;
-        audioSolo = GetComponent<AudioSource>();
+        audioSolo = gameObject.AddComponent<AudioSource>();
+        voiceSolo = gameObject.AddComponent<AudioSource>();
         Memorize();
     }
     public void ListNames()
@@ -130,6 +158,15 @@ public class SoloMode : MonoBehaviour
         for (int i = 0; i < numberOfImages; i++)
         {
             myListName.Add(animalsNames[i]);
+            switch (Langage.indexLanguage)
+            {
+                case 1 :
+                    myListAudio.Add(animalsInEnglish[i]);
+                    break;
+                case 2:
+                    myListAudio.Add(animalsInFrench[i]);
+                    break;
+            }
         }
     }
     [SerializeField] TextMeshProUGUI timerText;
@@ -160,8 +197,9 @@ public class SoloMode : MonoBehaviour
             if (myListName.Count > 0) //Get a random name on the list
             {
                 randomName = Random.Range(0, myListName.Count);
-                //myListSoundsEnglish?
-                nameOfImageToFind.text = myListName[randomName];
+                voiceSolo.clip = myListAudio[randomName]; //AudioName
+                voiceSolo.Play();
+                nameOfImageToFind.text = myListName[randomName]; //TextName
             }
             if (myListName.Count <= 0) //all names have been played
             {
@@ -176,8 +214,9 @@ public class SoloMode : MonoBehaviour
             {
                 randomName = Random.Range(0, myListName.Count);
                 translate = myListName[randomName];
-                //myListSoundsFrench?
-                inFrench();
+                voiceSolo.clip = myListAudio[randomName]; 
+                voiceSolo.Play();
+                InFrench();
                 nameOfImageToFind.text = translate;
             }
             if (myListName.Count <= 0)
@@ -192,12 +231,14 @@ public class SoloMode : MonoBehaviour
     {
         Animator localAnim = ButtonPrefab.prefab.GetComponent<Animator>(); //An animator local variable for each Button (prevent to get an animator shared by every buttons)
         localAnim.SetBool("Rotate90°", false); //Reveal the image
-        Debug.Log("imageName : " + myAnimals[ButtonPrefab.mySpritePrefabImage] + "  name :" + myListName[randomName]);
+        Button localButton = ButtonPrefab.prefab.GetComponentInChildren<Button>();
+        localButton.enabled = false;//prevent from spamming button
         if (myAnimals[ButtonPrefab.mySpritePrefabImage] == myListName[randomName]) //if there is a match
         {
             audioSolo.clip = soundGood;
             audioSolo.Play();
             myListName.Remove(myListName[randomName]); //removing the found name of the list 
+            myListAudio.Remove(myListAudio[randomName]);
             NameApparition(); // new name
         }
         else // if not
@@ -211,11 +252,12 @@ public class SoloMode : MonoBehaviour
         {
             yield return new WaitForSeconds(1f);
             localAnim.SetBool("Rotate90°", true);
+            localButton.enabled = true;
         }
     }
 
-    float currentTime = 0f;
-    float startingTime = 10f;
+    private float currentTime = 0f;
+    private float startingTime = 10f;
     [SerializeField] TextMeshProUGUI countDownText;
 
     public void Memorize()
@@ -242,7 +284,8 @@ public class SoloMode : MonoBehaviour
         }
     }
 
-    public void inFrench()
+    //Only translation
+    public void InFrench()  //We could also create an other array of names in french.. ? make a "randoNameEnglish" + "randomNameFrench" => Issue with dictionnary where names are in english
     {
         if (translate == "Bear")
         {

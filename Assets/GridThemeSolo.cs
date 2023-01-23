@@ -52,7 +52,7 @@ public class GridThemeSolo : MonoBehaviour
 
     public void DownGrid()
     {
-        if (scaleGrid > 3)
+        if (scaleGrid > 2)
         {
             scaleGrid -= 1;
             TextUpdate();
