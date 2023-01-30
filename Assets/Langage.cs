@@ -48,6 +48,10 @@ public class Langage : MonoBehaviour
         audios.clip = musiqueMenu;
         audios.Play();
     }
+    public void Mute()
+    {
+        audios.mute = !audios.mute;
+    }
     // Update is called once per frame
     void Start()
     {
