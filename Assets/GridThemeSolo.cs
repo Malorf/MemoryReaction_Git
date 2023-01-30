@@ -10,7 +10,7 @@ public class GridThemeSolo : MonoBehaviour
     public TextMeshProUGUI grid;
     public TextMeshProUGUI back;
     public TextMeshProUGUI play;
-    public static int scaleGrid = 4;
+    public static int scaleGrid = 2;
     public static int themeNumber = 1;
     public void TextUpdate()
     {

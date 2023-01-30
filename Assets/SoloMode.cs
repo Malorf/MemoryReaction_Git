@@ -68,7 +68,7 @@ public class SoloMode : MonoBehaviour
         {
             case 2:  //GridSizeIs 2x2
                 grid.cellSize = new Vector2(400, 400);
-                startingTime = 10f;
+                startingTime = 10f; //timeForMemorize
                 break;
             case 3:  //GridSizeIs 3x3
                 grid.cellSize = new Vector2(300, 300);
@@ -76,11 +76,11 @@ public class SoloMode : MonoBehaviour
                 break;
             case 4: //GridSizeIs 4x4
                 grid.cellSize = new Vector2(240, 240);
-                startingTime = 15f;
+                startingTime = 20f;
                 break;
             case 5: //GridSizeIs 5x5
                 grid.cellSize = new Vector2(180, 180);
-                startingTime = 20f;
+                startingTime = 30f;
                 break;
         }
     }
@@ -182,7 +182,7 @@ public class SoloMode : MonoBehaviour
     }
     public void Shuffle()
     {
-        for (int i = 0; i < numberOfImages; i++) //Shuffle (need to shuffle all arrays at the same time(or bug when you change one parameter))
+        for (int i = 0; i < numberOfImages; i++) //Shuffle (need to shuffle all arrays at the same time(or bug when you change one parameter)) "25 or numberOfImages"
         {
             string temp1 = animalsNames[i];
             Sprite temp2 = animalsImages[i];
@@ -192,7 +192,7 @@ public class SoloMode : MonoBehaviour
             AudioClip temp6 = foodInFrench[i];
             string temp7 = foodNames[i];
             Sprite temp8 = foodImages[i];
-            int randomIndex = Random.Range(i, numberOfImages);
+            int randomIndex = Random.Range(i, 25);
             animalsNames[i] = animalsNames[randomIndex];
             animalsImages[i] = animalsImages[randomIndex];
             foodNames[i] = foodNames[randomIndex];
@@ -220,6 +220,7 @@ public class SoloMode : MonoBehaviour
         Dictionary();
         ListNames();
         currentTime = startingTime;
+        timerText.text = string.Format("{0:0}:{1:00}", Mathf.Floor(0 / 60), 0 % 60);
         Memorize();
     }
     public void ListNames()
